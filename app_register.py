@@ -11,9 +11,14 @@ def add_user(name, email):
         cursor.execute("INSERT INTO users (name, email) VALUES (?, ?)", (name, email))
         conn.commit()
         conn.close()
-        return True
+        return 200, "Sucesso"
+    except sqlite3.IntegrityError:
+        return 409, "Este email já está cadastrado"
+    except sqlite3.OperationalError:
+        return 500, "O database está locked"
     except Exception as e:
-        return False
+        return 500, "Erro inesperado"
+
 
 @app.route("/register", methods=["POST"])
 def register():
@@ -24,10 +29,13 @@ def register():
     if not name or not email:
         return jsonify({"error": "Nome e email são obrigatórios"}), 400
 
-    if add_user(name, email):
+    code, error_message = add_user(name, email)
+    if code == 200:
         return jsonify({"message": "Usuário cadastrado com sucesso"}), 201
-    else:
-        return jsonify({"error": "Erro ao cadastrar usuário"}), 500
+    elif code == 409:
+        return jsonify({"error": error_message}), 409
+    elif code == 500:
+        return jsonify({"error": error_message}), 500
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
