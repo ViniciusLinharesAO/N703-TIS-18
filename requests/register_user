@@ -1,7 +1,9 @@
-POST https://localhost:5001/register HTTP/1.1
+POST http://localhost:5001/register HTTP/1.1
 content-type: application/json
 
 {
-    "name": "João 4Silva",
-    "email": "joao6@email.com"
+    "user_name": "Artur02",
+    "user_email": "artur02@email.com",
+    "user_cpf": "00000000002",
+    "user_status": "I"
 }
