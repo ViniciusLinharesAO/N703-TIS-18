@@ -10,7 +10,6 @@ try:
     client = MongoClient(URI)
     db = client[MONGODB_DATABASE]
     collection = db[MONGODB_COLLECTION]
-    print("Conexão com MongoDB estabelecida com sucesso!")
 except Exception as e:
     print(f"Erro ao conectar com MongoDB: {str(e)}")
 
@@ -18,13 +17,14 @@ except Exception as e:
 def cadastrar_usuario(nome, email, cpf, status):
     try:
         if collection.find_one({"user_cpf": cpf}):
-            return 409, f"O CPF informado ja esta cadastrado", None
+            return 409, f"O CPF informado ja esta cadastrado"
         if collection.find_one({"user_email": email}):
-            return 409, f"Email {email} ja cadastrado", None
+            return 409, f"Email {email} ja cadastrado"
         
         dados_usuario = {"user_name": nome, "user_email": email, "user_cpf": cpf, "user_status": status}
-        dados_inseridos = collection.insert_one(dados_usuario)
+        collection.insert_one(dados_usuario)
         
-        return 200, "Sucesso", dados_inseridos.inserted_id
+        return 200, None
     except Exception as e:
         return 500, f"Erro: {str(e)}", None
+    

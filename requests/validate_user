@@ -1,0 +1,6 @@
+PUT http://localhost:5003/atualiza_situacao/00000000001 HTTP/1.1
+content-type: application/json
+
+{
+    "user_status": "A"
+}

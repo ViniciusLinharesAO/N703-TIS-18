@@ -2,8 +2,8 @@ POST http://localhost:5001/register HTTP/1.1
 content-type: application/json
 
 {
-    "user_name": "Artur02",
-    "user_email": "artur02@email.com",
-    "user_cpf": "00000000002",
+    "user_name": "Artur03",
+    "user_email": "artur03@email.com",
+    "user_cpf": "00000000003",
     "user_status": "I"
 }

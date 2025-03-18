@@ -16,7 +16,7 @@ def register():
     if not nome or not email:
         return jsonify({"erro": "Nome e email são obrigatorios"}), 400
     
-    codigo, mensagem, usuario_id = cadastrar_usuario(nome, email, cpf, situacao)
+    codigo, mensagem = cadastrar_usuario(nome, email, cpf, situacao)
 
     if codigo == 200:
         return jsonify({
