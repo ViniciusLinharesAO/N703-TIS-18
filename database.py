@@ -28,3 +28,32 @@ def cadastrar_usuario(nome, email, cpf, status):
     except Exception as e:
         return 500, f"Erro: {str(e)}", None
     
+def listar_usuarios():
+    try:
+        # Busca todos os usuários no banco
+        usuarios = list(collection.find({}, {"_id": 0}))
+        
+        if not usuarios:
+            return 404, "Nenhum usuário encontrado", []
+        
+        return 200, None, usuarios
+    except Exception as e:
+        return 500, f"Erro ao listar usuários: {str(e)}", []
+    
+def atualizar_status(cpf,status):
+    if collection is None:
+        return 500, "Erro na conexao com o banco de dados"
+    try:
+        user = collection.find_one({"user_cpf": cpf})
+        if not user:
+            return 404, "O CPF informado não consta na base de dados"
+        if user.get("user_status") == status:
+            return 200, f"O status do usuario ja consta como '{status}'"
+        collection.update_one(
+            {"user_cpf": cpf}, 
+            {"$set": {"user_status": status}}
+        )
+        return 200, f"Status do usuario atualizado para '{status}'"
+
+    except Exception as e:
+        return 500, f"Erro: {str(e)}"
