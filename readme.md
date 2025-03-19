@@ -1,3 +1,12 @@
+Como rodar
+1. instalar python 3.12.9
+2. rode o comendo `make install_dependencies`
+3. rode as 3 apps:
+  3.a. `make init_app_integration`
+  3.b. `make init_app_register`
+  3.c. `make init_app_validation`
+
+
 Sistema de Cadastro e Consulta de Usuários
 
 Duas aplicações compartilhando um banco SQLite

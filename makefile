@@ -1,8 +1,11 @@
-init_db:
-	python init_db.py
+install_dependencies:
+	pip install -r requirements.txt
 
-init_register_app:
+init_app_integration:
+	python app_integration.py
+
+init_app_register:
 	python app_register.py
 
-init_viwer_app:
-	python app_view.py
+init_app_validation:
+	python app_validation.py
