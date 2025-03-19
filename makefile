@@ -6,6 +6,3 @@ init_app_integration:
 
 init_app_register:
 	python app_register.py
-
-init_app_validation:
-	python app_validation.py
