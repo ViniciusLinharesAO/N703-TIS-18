@@ -1,9 +1,10 @@
 POST http://localhost:5001/register HTTP/1.1
 content-type: application/json
+X-API-KEY: 3cdea1b06e8f4c08213ca4cbd702a27871914c971ee226cf9debf88b8435c375
 
 {
-    "user_name": "Artur03",
-    "user_email": "artur03@email.com",
-    "user_cpf": "00000000003",
+    "user_name": "Vini Teste 3",
+    "user_email": "viniteste3@email.com",
+    "user_cpf": "00000000016",
     "user_status": "I"
 }
